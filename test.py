@@ -1,6 +1,10 @@
 from kivy.app import App
 from kivy.lang import Builder
 
+from kivy.config import Config
+Config.set('graphics', 'width', '800')
+Config.set('graphics', 'height', '480')
+
 
 root = Builder.load_string('''
 #:import NoTransition kivy.uix.screenmanager.NoTransition
