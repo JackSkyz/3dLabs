@@ -1,0 +1,54 @@
+#login:
+user: pi
+psw : raspberry
+
+# rotate screen
+sudo nano /boot/config.txt
+# add new line
+lcd_rotate=2
+# save and reboot
+sudo reboot
+
+# change layout keyboard
+sudo nano /etc/default/keyboard
+# change gb to us
+# reboot for apply changes
+sudo reboot
+
+
+# update rpi
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y
+# reboot rpi for apply changes
+sudo reboot
+   
+   
+# install auto mount usb
+sudo apt-get install usbmount
+# manually edit systemd file
+sudo nano /lib/systemd/system/systemd-udevd.service
+# change MountFlags=slave to MountFlags=shared
+# reboot rpi
+sudo reboot
+
+# install brigthness 
+sudo pip3 install rpi_backlight
+# install dependences
+sudo apt-get install build-essential python3-setuptools python3-numpy python3-scipy libatlas-dev python3-matplotlib libatlas-base-dev
+
+# install kivy on rpi
+sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+   pkg-config libgl1-mesa-dev libgles2-mesa-dev \
+   python-setuptools libgstreamer1.0-dev git-core \
+   gstreamer1.0-plugins-{bad,base,good,ugly} \
+   gstreamer1.0-{omx,alsa} python-dev libmtdev-dev \
+   xclip xsel
+# este punto se demora entre 5 a 10 min
+# install pip3
+sudo apt-get install python3-pip
+#install cython==0.28.2
+sudo pip3 install cython==0.28.2
+# install kivy globally on system (se demora 20 min a 30 min)
+sudo pip3 install git+https://github.com/kivy/kivy.git@master
+#install tensorflow keras sklearn skimage (se demora 30 a 40 min)
+sudo pip3 install -U --no-cache-dir tensorflow keras scikit-learn scikit-image serial
+
