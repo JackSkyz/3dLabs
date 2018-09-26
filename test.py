@@ -9,7 +9,8 @@ Config.set('graphics', 'height', '480')
 root = Builder.load_string('''
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 #:set spac 20
-#:set pad 10
+#:set pad_side 10
+#:set pad_bot 30
 #:set x_screen 480
 #:set y_screen 800
 
@@ -49,7 +50,7 @@ BoxLayout:
     BoxLayout:
         size_hint: (1, 0.35)
         spacing: spac
-        padding: [pad, 0, pad, pad]
+        padding: [pad_side, 0, pad_side, pad_bot]
         
         CheckBox:
             group: 'buttons'
