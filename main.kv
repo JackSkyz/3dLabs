@@ -1,0 +1,418 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:set spac 20
+#:set pad 10
+
+<RootScreen>:
+    transition: NoTransition()
+    StartScreen:
+    ControlScreen:
+    ToolsScreen:
+    FilesScreen:
+    ModeScreen:
+
+<StartScreen>:
+    name: 'init'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './imagenes/background.jpg'
+    FloatLayout:
+        pos_hint: {'x':.0, 'y':.9}
+        canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
+            Rectangle:
+                pos:  self.pos
+                size: self.size
+                
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            FloatLayout:
+                pos_hint: {'x': 0, 'y': 0}
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,0.5)
+                    Rectangle:
+                        source: './imagenes/temperature.png'
+                        size: [200,200]
+                        pos: self.pos
+            Label:
+                pos_hint: {'x': 0.1, 'y': 0}
+                text_size: self.size
+                halign: "left"
+                valign: 'middle'
+                text: '[b]Hola! ¿Qué haremos hoy?[/b]'
+                markup: True
+                
+        BoxLayout:
+            size_hint: (1, 0.35)
+            spacing: spac
+            padding: [pad, 0, pad, pad]
+            
+            Button:
+                path:          './imagenes/B_1_inicio.png'
+                path_on_press: './imagenes/B_1_inicio_on_press.png'
+                text: ""
+                on_release: root.manager.current = "init"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_2_control.png'
+                path_on_press: './imagenes/B_2_control_on_press.png'
+                text: ""
+                on_release: root.manager.current = "control"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_3_herramientas.png'
+                path_on_press: './imagenes/B_3_herramientas_on_press.png'
+                text: ""
+                on_release: root.manager.current = "tools"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_4_archivos.png'
+                path_on_press: './imagenes/B_4_archivos_on_press.png'
+                text: ""
+                on_release: root.manager.current = "files"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_5_modo.png'
+                path_on_press: './imagenes/B_5_modo_on_press.png'
+                text: ""
+                on_release: root.manager.current = "mode"
+                background_normal: self.path
+                background_down:   self.path
+            
+<ControlScreen>:
+    name: 'control'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './imagenes/background.jpg'
+    FloatLayout:
+        pos_hint: {'x':.0, 'y':.9}
+        canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
+            Rectangle:
+                pos:  self.pos
+                size: self.size
+                
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            FloatLayout:
+                pos_hint: {'x': 0, 'y': 0}
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,0.5)
+                    Rectangle:
+                        source: './imagenes/temperature.png'
+                        size: [200,200]
+                        pos: self.pos
+            Label:
+                pos_hint: {'x': 0.1, 'y': 0}
+                text_size: self.size
+                halign: "left"
+                valign: 'middle'
+                text: '[b]Control[/b]'
+                markup: True
+                
+        BoxLayout:
+            size_hint: (1, 0.35)
+            spacing: spac
+            padding: [pad, 0, pad, pad]
+            
+            Button:
+                path:          './imagenes/B_1_inicio.png'
+                path_on_press: './imagenes/B_1_inicio_on_press.png'
+                text: ""
+                on_release: root.manager.current = "init"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_2_control.png'
+                path_on_press: './imagenes/B_2_control_on_press.png'
+                text: ""
+                on_release: root.manager.current = "control"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_3_herramientas.png'
+                path_on_press: './imagenes/B_3_herramientas_on_press.png'
+                text: ""
+                on_release: root.manager.current = "tools"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_4_archivos.png'
+                path_on_press: './imagenes/B_4_archivos_on_press.png'
+                text: ""
+                on_release: root.manager.current = "files"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_5_modo.png'
+                path_on_press: './imagenes/B_5_modo_on_press.png'
+                text: ""
+                on_release: root.manager.current = "mode"
+                background_normal: self.path
+                background_down:   self.path
+
+<ToolsScreen>:
+    name: 'tools'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './imagenes/background.jpg'
+    FloatLayout:
+        pos_hint: {'x':.0, 'y':.9}
+        canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
+            Rectangle:
+                pos:  self.pos
+                size: self.size
+                
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            FloatLayout:
+                pos_hint: {'x': 0, 'y': 0}
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,0.5)
+                    Rectangle:
+                        source: './imagenes/temperature.png'
+                        size: [200,200]
+                        pos: self.pos
+            Label:
+                pos_hint: {'x': 0.1, 'y': 0}
+                text_size: self.size
+                halign: "left"
+                valign: 'middle'
+                text: '[b]Tools[/b]'
+                markup: True
+                
+        BoxLayout:
+            size_hint: (1, 0.35)
+            spacing: spac
+            padding: [pad, 0, pad, pad]
+            
+            Button:
+                path:          './imagenes/B_1_inicio.png'
+                path_on_press: './imagenes/B_1_inicio_on_press.png'
+                text: ""
+                on_release: root.manager.current = "init"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_2_control.png'
+                path_on_press: './imagenes/B_2_control_on_press.png'
+                text: ""
+                on_release: root.manager.current = "control"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_3_herramientas.png'
+                path_on_press: './imagenes/B_3_herramientas_on_press.png'
+                text: ""
+                on_release: root.manager.current = "tools"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_4_archivos.png'
+                path_on_press: './imagenes/B_4_archivos_on_press.png'
+                text: ""
+                on_release: root.manager.current = "files"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_5_modo.png'
+                path_on_press: './imagenes/B_5_modo_on_press.png'
+                text: ""
+                on_release: root.manager.current = "mode"
+                background_normal: self.path
+                background_down:   self.path
+
+
+<FilesScreen>:
+    name: 'files'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './imagenes/background.jpg'
+    FloatLayout:
+        pos_hint: {'x':.0, 'y':.9}
+        canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
+            Rectangle:
+                pos:  self.pos
+                size: self.size
+                
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            FloatLayout:
+                pos_hint: {'x': 0, 'y': 0}
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,0.5)
+                    Rectangle:
+                        source: './imagenes/temperature.png'
+                        size: [200,200]
+                        pos: self.pos
+            Label:
+                pos_hint: {'x': 0.1, 'y': 0}
+                text_size: self.size
+                halign: "left"
+                valign: 'middle'
+                text: '[b]Files[/b]'
+                markup: True
+                
+        BoxLayout:
+            size_hint: (1, 0.35)
+            spacing: spac
+            padding: [pad, 0, pad, pad]
+            
+            Button:
+                path:          './imagenes/B_1_inicio.png'
+                path_on_press: './imagenes/B_1_inicio_on_press.png'
+                text: ""
+                on_release: root.manager.current = "init"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_2_control.png'
+                path_on_press: './imagenes/B_2_control_on_press.png'
+                text: ""
+                on_release: root.manager.current = "control"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_3_herramientas.png'
+                path_on_press: './imagenes/B_3_herramientas_on_press.png'
+                text: ""
+                on_release: root.manager.current = "tools"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_4_archivos.png'
+                path_on_press: './imagenes/B_4_archivos_on_press.png'
+                text: ""
+                on_release: root.manager.current = "files"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_5_modo.png'
+                path_on_press: './imagenes/B_5_modo_on_press.png'
+                text: ""
+                on_release: root.manager.current = "mode"
+                background_normal: self.path
+                background_down:   self.path
+
+
+<ModeScreen>:
+    name: 'mode'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './imagenes/background.jpg'
+    FloatLayout:
+        pos_hint: {'x':.0, 'y':.9}
+        canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
+            Rectangle:
+                pos:  self.pos
+                size: self.size
+                
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            FloatLayout:
+                pos_hint: {'x': 0, 'y': 0}
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,0.5)
+                    Rectangle:
+                        source: './imagenes/temperature.png'
+                        size: [200,200]
+                        pos: self.pos
+            Label:
+                pos_hint: {'x': 0.1, 'y': 0}
+                text_size: self.size
+                halign: "left"
+                valign: 'middle'
+                text: '[b]Mode[/b]'
+                markup: True
+                
+        BoxLayout:
+            size_hint: (1, 0.35)
+            spacing: spac
+            padding: [pad, 0, pad, pad]
+            
+            Button:
+                path:          './imagenes/B_1_inicio.png'
+                path_on_press: './imagenes/B_1_inicio_on_press.png'
+                text: ""
+                on_release: root.manager.current = "init"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_2_control.png'
+                path_on_press: './imagenes/B_2_control_on_press.png'
+                text: ""
+                on_release: root.manager.current = "control"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_3_herramientas.png'
+                path_on_press: './imagenes/B_3_herramientas_on_press.png'
+                text: ""
+                on_release: root.manager.current = "tools"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_4_archivos.png'
+                path_on_press: './imagenes/B_4_archivos_on_press.png'
+                text: ""
+                on_release: root.manager.current = "files"
+                background_normal: self.path
+                background_down:   self.path
+            Button:
+                path:          './imagenes/B_5_modo.png'
+                path_on_press: './imagenes/B_5_modo_on_press.png'
+                text: ""
+                on_release: root.manager.current = "mode"
+                background_normal: self.path
+                background_down:   self.path
