@@ -25,7 +25,7 @@ BoxLayout:
             
             
         Color:
-            rgba: (0.25,0.25,0.25,0.7)
+            rgba: (0.25,0.25,0.25,0.65)
         Rectangle:
             pos: (0, x_screen - 30)
             size: self.size
@@ -35,7 +35,6 @@ BoxLayout:
 
         ScreenManager:
             transition: NoTransition()
-            size_hint: 1, .8
             id: sm
             Screen:
                 name: 'game'
@@ -48,43 +47,83 @@ BoxLayout:
                     text: 'Settings' 
     
     BoxLayout:
+        size_hint: (1, 0.35)
+        spacing: spac
+        padding: [pad, 0, pad, pad]
         
         CheckBox:
             group: 'buttons'
-            text: "Settings"
+            text: ""
             on_state: sm.current = 'game'
             state: 'down'
             allow_no_selection: False
+            
+            canvas:
+                Color:
+                    rgba: self.color
+                Rectangle:
+                    source: './imagenes/B_1_inicio.png'
+                    size: sp(128), sp(128)
+                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
         
         CheckBox:
             group: 'buttons'
-            text: "Settings"
+            text: ""
             on_state: sm.current = 'settings'
             allow_no_selection: False
-            
-        CheckBox:
-            group: 'buttons'
-            text: "Settings"
-            on_state: sm.current = 'settings'
-            allow_no_selection: False
-            
-        CheckBox:
-            group: 'buttons'
-            text: "Settings"
-            on_state: sm.current = 'settings'
-            allow_no_selection: False
-            
-        CheckBox:
-            group: 'buttons'
-            text: "Settings"
-            on_state: sm.current = 'settings'
-            allow_no_selection: False
+            canvas:
+                Color:
+                    rgba: self.color
+                Rectangle:
+                    source: './imagenes/B_2_control.png'
+                    size: sp(128), sp(128)
+                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
         
+        
+        CheckBox:
+            group: 'buttons'
+            text: ""
+            on_state: sm.current = 'settings'
+            allow_no_selection: False
+            canvas:
+                Color:
+                    rgba: self.color
+                Rectangle:
+                    source: './imagenes/B_3_herramientas.png'
+                    size: sp(128), sp(128)
+                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+            
+        CheckBox:
+            group: 'buttons'
+            text: ""
+            on_state: sm.current = 'settings'
+            allow_no_selection: False
+            canvas:
+                Color:
+                    rgba: self.color
+                Rectangle:
+                    source: './imagenes/B_4_archivos.png'
+                    size: sp(128), sp(128)
+                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+            
+        CheckBox:
+            group: 'buttons'
+            text: ""
+            on_state: sm.current = 'settings'
+            allow_no_selection: False
+            canvas:
+                Color:
+                    rgba: self.color
+                Rectangle:
+                    source: './imagenes/B_5_modo.png'
+                    size: sp(128), sp(128)
+                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
 
 
     
 
 ''')
+
 
 
 class MyApp(App):
