@@ -94,17 +94,21 @@
 <ControlScreen>:
     name: 'control'
     canvas.before:
+        Color:
+            rgba: (1,1,1,1)
         Rectangle:
             pos: self.pos
             size: self.size
             source: './imagenes/background.jpg'
     FloatLayout:
-        pos_hint: {'x':.0, 'y':-.75}
+        pos_hint: {'x':.0, 'y':.9}
         canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
             Rectangle:
                 pos:  self.pos
                 size: self.size
-                source: './imagenes/background_button_normal.png'
+                
 
     BoxLayout:
         orientation: 'vertical'
@@ -124,7 +128,7 @@
                 text_size: self.size
                 halign: "left"
                 valign: 'middle'
-                text: '[b]Hola! ¿Qué haremos hoy?[/b]'
+                text: '[b]Control[/b]'
                 markup: True
                 
         BoxLayout:
@@ -171,17 +175,21 @@
 <ToolsScreen>:
     name: 'tools'
     canvas.before:
+        Color:
+            rgba: (1,1,1,1)
         Rectangle:
             pos: self.pos
             size: self.size
             source: './imagenes/background.jpg'
     FloatLayout:
-        pos_hint: {'x':.0, 'y':-.75}
+        pos_hint: {'x':.0, 'y':.9}
         canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
             Rectangle:
                 pos:  self.pos
                 size: self.size
-                source: './imagenes/background_button_normal.png'
+                
 
     BoxLayout:
         orientation: 'vertical'
@@ -201,7 +209,7 @@
                 text_size: self.size
                 halign: "left"
                 valign: 'middle'
-                text: '[b]Hola! ¿Qué haremos hoy?[/b]'
+                text: '[b]Tools[/b]'
                 markup: True
                 
         BoxLayout:
@@ -249,17 +257,21 @@
 <FilesScreen>:
     name: 'files'
     canvas.before:
+        Color:
+            rgba: (1,1,1,1)
         Rectangle:
             pos: self.pos
             size: self.size
             source: './imagenes/background.jpg'
     FloatLayout:
-        pos_hint: {'x':.0, 'y':-.75}
+        pos_hint: {'x':.0, 'y':.9}
         canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
             Rectangle:
                 pos:  self.pos
                 size: self.size
-                source: './imagenes/background_button_normal.png'
+                
 
     BoxLayout:
         orientation: 'vertical'
@@ -279,7 +291,7 @@
                 text_size: self.size
                 halign: "left"
                 valign: 'middle'
-                text: '[b]Hola! ¿Qué haremos hoy?[/b]'
+                text: '[b]Files[/b]'
                 markup: True
                 
         BoxLayout:
@@ -327,17 +339,21 @@
 <ModeScreen>:
     name: 'mode'
     canvas.before:
+        Color:
+            rgba: (1,1,1,1)
         Rectangle:
             pos: self.pos
             size: self.size
             source: './imagenes/background.jpg'
     FloatLayout:
-        pos_hint: {'x':.0, 'y':-.75}
+        pos_hint: {'x':.0, 'y':.9}
         canvas.before:
+            Color:
+                rgba: (0.25,0.25,0.25,0.7)
             Rectangle:
                 pos:  self.pos
                 size: self.size
-                source: './imagenes/background_button_normal.png'
+                
 
     BoxLayout:
         orientation: 'vertical'
@@ -357,7 +373,7 @@
                 text_size: self.size
                 halign: "left"
                 valign: 'middle'
-                text: '[b]Hola! ¿Qué haremos hoy?[/b]'
+                text: '[b]Mode[/b]'
                 markup: True
                 
         BoxLayout:
