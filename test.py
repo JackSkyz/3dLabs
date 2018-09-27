@@ -13,6 +13,8 @@ root = Builder.load_string('''
 #:set pad_bot 30
 #:set x_screen 480
 #:set y_screen 800
+#:set sp_act 100
+#:set sp_nor 128
 
 BoxLayout:
     orientation: 'vertical'
@@ -63,9 +65,9 @@ BoxLayout:
                 Color:
                     rgba: self.color
                 Rectangle:
-                    source: './imagenes/B_1_inicio.png'
-                    size: sp(128), sp(128)
-                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+                    source: './imagenes/B_1_inicio_normal.png'
+                    size: (sp(sp_act), sp(sp_act)) if self.active else (sp(sp_nor), sp(sp_nor))
+                    pos: (int(self.center_x - sp(sp_act // 2)), int(self.center_y - sp(sp_act // 2))) if self.active else (int(self.center_x - sp(sp_nor / 2)), int(self.center_y - sp(sp_nor / 2)))
         
         CheckBox:
             group: 'buttons'
@@ -76,9 +78,9 @@ BoxLayout:
                 Color:
                     rgba: self.color
                 Rectangle:
-                    source: './imagenes/B_2_control.png'
-                    size: sp(128), sp(128)
-                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+                    source: './imagenes/B_2_control_normal.png'
+                    size: (sp(sp_act), sp(sp_act)) if self.active else (sp(sp_nor), sp(sp_nor))
+                    pos: (int(self.center_x - sp(sp_act // 2)), int(self.center_y - sp(sp_act // 2))) if self.active else (int(self.center_x - sp(sp_nor / 2)), int(self.center_y - sp(sp_nor / 2)))
         
         
         CheckBox:
@@ -91,8 +93,8 @@ BoxLayout:
                     rgba: self.color
                 Rectangle:
                     source: './imagenes/B_3_herramientas.png'
-                    size: sp(128), sp(128)
-                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+                    size: (sp(sp_act), sp(sp_act)) if self.active else (sp(sp_nor), sp(sp_nor))
+                    pos: (int(self.center_x - sp(sp_act // 2)), int(self.center_y - sp(sp_act // 2))) if self.active else (int(self.center_x - sp(sp_nor / 2)), int(self.center_y - sp(sp_nor / 2)))
             
         CheckBox:
             group: 'buttons'
@@ -104,8 +106,8 @@ BoxLayout:
                     rgba: self.color
                 Rectangle:
                     source: './imagenes/B_4_archivos.png'
-                    size: sp(128), sp(128)
-                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+                    size: (sp(sp_act), sp(sp_act)) if self.active else (sp(sp_nor), sp(sp_nor))
+                    pos: (int(self.center_x - sp(sp_act // 2)), int(self.center_y - sp(sp_act // 2))) if self.active else (int(self.center_x - sp(sp_nor / 2)), int(self.center_y - sp(sp_nor / 2)))
             
         CheckBox:
             group: 'buttons'
@@ -117,8 +119,8 @@ BoxLayout:
                     rgba: self.color
                 Rectangle:
                     source: './imagenes/B_5_modo.png'
-                    size: sp(128), sp(128)
-                    pos: int(self.center_x - sp(64)), int(self.center_y - sp(64))
+                    size: (sp(sp_act), sp(sp_act)) if self.active else (sp(sp_nor), sp(sp_nor))
+                    pos: (int(self.center_x - sp(sp_act // 2)), int(self.center_y - sp(sp_act // 2))) if self.active else (int(self.center_x - sp(sp_nor / 2)), int(self.center_y - sp(sp_nor / 2)))
 
 
     
@@ -131,6 +133,9 @@ class MyApp(App):
 
     def build(self):
         return root
+    
+    def init_on_state(self):
+        self.sm.current = 'game'
 
 
 MyApp().run()
