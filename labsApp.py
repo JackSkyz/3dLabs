@@ -630,7 +630,7 @@ class MainScreen(Screen):
     
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
-#        self.Rpi = rpi()
+        self.Rpi = rpi()
         self.paths = []
         self.to_print = ''
         red  = Color('red')

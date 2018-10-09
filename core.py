@@ -8,7 +8,7 @@ Created on Tue Jun 11 21:15:47 2018
 import sys
 from glob import glob
 #import logging
-from threading import Thread, Event
+from threading import Event
 import serial
 import queue
 import time
@@ -78,15 +78,15 @@ class rpi(object):
         self.busy = Event()
         self.priting = []
         
-        """ Threading """
-        self.thread = []
-        self.thread.append(Thread(target=self._ArduinoRead))
-        self.thread.append(Thread(target=self._ArduinoWrite))
-        self.thread.append(Thread(target=self._requestTemperature))
-        self.thread.append(Thread(target=self._functionExec))
-        
-        for thread in self.thread:
-            thread.start()
+#        """ Threading """
+#        self.thread = []
+#        self.thread.append(Thread(target=self._ArduinoRead))
+#        self.thread.append(Thread(target=self._ArduinoWrite))
+#        self.thread.append(Thread(target=self._requestTemperature))
+#        self.thread.append(Thread(target=self._functionExec))
+#        
+#        for thread in self.thread:
+#            thread.start()
         
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
