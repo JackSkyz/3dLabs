@@ -64,9 +64,8 @@ class rpi(object):
         self.Arduino.open()
 
         self.aw = ''
-        
-        
-#        if self._debug:
+        self.s = ''
+
         print('Estado del puerto: {isOpen}\nNombre del dispositivo: {name}\n'.format(isOpen=self.Arduino.isOpen(), name=self.Arduino.name))
 
         
@@ -92,7 +91,7 @@ class rpi(object):
         
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
-        self.s = ''
+        
         try:
             data = self.Arduino.readline()
             data = str(data)
