@@ -10,6 +10,7 @@ from core import rpi
 from glob import glob
 from colour import Color
 import numpy as np
+from threading import Thread
 #os.environ['KIVY_WINDOW'] = 'egl_rpi' 
 
 #from kivy.config import Config
@@ -719,7 +720,8 @@ class MainScreen(Screen):
             self.Rpi.parameters['Imprimiendo']['archivo'] = self.to_print
             self.Rpi.parameters['status'] = 'priting'
 #            self.Rpi.functionExec.put_nowait('imprime')
-            Clock.schedule_once(self.Rpi.Priting, .6)
+            Thread(target=self.Rpi.Priting).start()
+#            Clock.schedule_once(self.Rpi.Priting, .6)
             
             # ahora hay que bloquear los demas parametros y modificar el label del inicio
             pass
