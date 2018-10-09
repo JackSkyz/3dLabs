@@ -271,7 +271,7 @@ class rpi(object):
             
         self.parameters['Imprimiendo']['archivo'] = os.path.basename(self.parameters['Imprimiendo']['archivo']).split('.')[0]
 #        Thread(target=self.getPercent, args=(linesGCode)).start()
-        self.getPercent(linesGCode)
+#        self.getPercent(linesGCode)
         # esto me entregara self.distanceTotal
         lineDistance, x, y, z, newX, newY, newZ = 0, 0, 0, 0, 0, 0, 0
         start = time.time()

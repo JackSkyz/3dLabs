@@ -718,7 +718,7 @@ class MainScreen(Screen):
             self.screen_main.current = 'init'
             self.Rpi.parameters['Imprimiendo']['archivo'] = self.to_print
 #            self.Rpi.functionExec.put_nowait('imprime')
-            Clock.schedule_once(self.Rpi.Priting, .2)
+            Clock.schedule_once(self.Rpi.Priting, .6)
             
             # ahora hay que bloquear los demas parametros y modificar el label del inicio
             pass
