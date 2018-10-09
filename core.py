@@ -93,39 +93,40 @@ class rpi(object):
         """read the incoming messages from the arduino"""
         
         try:
-            data = self.Arduino.readline()
-            data = str(data)
-            if len(data) != 0:
-                
-                if len(data.split('/')) == 3: # si es temperatura?
-                    # tiene 2 slash que corresponde a una
-                    # respuesta de temperatura
-                    t = [None] * 4
-                    d = data.split('/')
-                    t[0] = float(d[0].split(':')[-1])
-                    t[1] = float(d[1].split('B')[0])
-                    t[2] = float(d[1].split(':')[-1])
-                    t[3] = float(d[2].split('@')[0])
-                    print(t)
+            if self.Arduino.in_waiting > 0:
+                data = self.Arduino.readline()
+                data = str(data)
+                if len(data) != 0:
                     
-                    self.parameters['Temperatura']['extrusor'] = t[0]
-                    self.parameters['Temperatura']['extrusor_meta'] = t[1]
-                    self.parameters['Temperatura']['cama'] = t[2]
-                    self.parameters['Temperatura']['cama_meta'] = t[3]
+                    if len(data.split('/')) == 3: # si es temperatura?
+                        # tiene 2 slash que corresponde a una
+                        # respuesta de temperatura
+                        t = [None] * 4
+                        d = data.split('/')
+                        t[0] = float(d[0].split(':')[-1])
+                        t[1] = float(d[1].split('B')[0])
+                        t[2] = float(d[1].split(':')[-1])
+                        t[3] = float(d[2].split('@')[0])
+                        print(t)
+                        
+                        self.parameters['Temperatura']['extrusor'] = t[0]
+                        self.parameters['Temperatura']['extrusor_meta'] = t[1]
+                        self.parameters['Temperatura']['cama'] = t[2]
+                        self.parameters['Temperatura']['cama_meta'] = t[3]
+                        
+                        
+    #                        self.fileWrite.put_nowait(string)
+                    elif data[:2] == 'ok':
+                        self.busy.set()
+                        if len(self.queueCommands) > 0:
+                            self.queueCommands.pop(0)
                     
-                    
-#                        self.fileWrite.put_nowait(string)
-                elif data[:2] == 'ok':
-                    self.busy.set()
-                    if len(self.queueCommands) > 0:
-                        self.queueCommands.pop(0)
-                
-                if self._debug:
-#                        print('Lectura del arduino: {}'.format(data))
-                    a = datetime.now()
-                    self.s += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + data
-                    with open('./ArduinoRead.log', 'w') as f:
-                        f.write(self.s)
+                    if self._debug:
+    #                        print('Lectura del arduino: {}'.format(data))
+                        a = datetime.now()
+                        self.s += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + data
+                        with open('./ArduinoRead.log', 'w') as f:
+                            f.write(self.s)
         except:
             raise Exception('Muerto el proceso Arduino Read: {}'.format(sys.exc_info()[0]))
             
@@ -186,6 +187,7 @@ class rpi(object):
         t.append(self.parameters['Temperatura']['extrusor_meta'])
         t.append(self.parameters['Temperatura']['cama'])
         t.append(self.parameters['Temperatura']['cama_meta'])
+        print(t)
         
         return t
     
