@@ -647,6 +647,16 @@ class MainScreen(Screen):
         
         self.files_scroll.add_widget(self.layout_for_scrolls)
         
+        
+    
+    def ArduinoRead(self, dt):
+        self.Rpi._ArduinoRead()
+    
+    def ArduinoWrite(self, dt):
+        self.Rpi._ArduinoWrite()
+        
+    def requestTemperature(self, dt):
+        self.Rpi._requestTemperature()
 
     def update_temperature(self, dt):
 #        t_e_now, t_e_limit, t_c_now, t_c_limit = self.Rpi.get_temp()
@@ -815,6 +825,11 @@ class MyApp(App):
         
         Clock.schedule_interval(self.My.update_temperature, 0.5)
         Clock.schedule_interval(self.My.check_usb, 0.5)
+        
+        Clock.schedule_interval(self.My.ArduinoRead, .1)
+        Clock.schedule_interval(self.My.ArduinoWrite, .1)
+        Clock.schedule_interval(self.My.requestTemperature, .1)
+        
     
     def on_stop(self):
         print('now exit')
