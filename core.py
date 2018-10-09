@@ -92,6 +92,7 @@ class rpi(object):
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
         print('leyendo arduino')
+        print(self.Arduino.in_waiting)
         if self.Arduino.in_waiting > 0:
             data = self.Arduino.readline()
             data = str(data)
