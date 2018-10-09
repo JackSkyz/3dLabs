@@ -269,7 +269,7 @@ class rpi(object):
         print('priting {}'.format(path))
         with open(path, 'r') as gcode:
             linesGCode = gcode.readlines()
-            
+        print(linesGCode)
         self.parameters['Imprimiendo']['archivo'] = os.path.basename(self.parameters['Imprimiendo']['archivo']).split('.')[0]
 #        Thread(target=self.getPercent, args=(linesGCode)).start()
 #        self.getPercent(linesGCode)
