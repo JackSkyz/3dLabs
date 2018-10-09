@@ -172,23 +172,23 @@ class rpi(object):
         if command == 'home':
             self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()][subcommand.lower()])
-            self.arduinoWrite.put('relative_absolute')
+#            self.arduinoWrite.put('relative_absolute')
         elif command == 'apagar_motores':
             self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()])
-            self.arduinoWrite.put('relative_absolute')
+#            self.arduinoWrite.put('relative_absolute')
         elif command[:4] == 'move':
             self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
-            self.arduinoWrite.put('relative_absolute')
+#            self.arduinoWrite.put('relative_absolute')
         elif command[:4] == 'cale':
             self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
-            self.arduinoWrite.put('relative_absolute')
+#            self.arduinoWrite.put('relative_absolute')
         else:
             self.arduinoWrite.put('relative_move')
             [self.arduinoWrite.put(c) for c in self.commands[command]]
-            self.arduinoWrite.put('relative_absolute')
+#            self.arduinoWrite.put('relative_absolute')
         #self.commands[]
 
     def getPercent(self, linesGCode):
