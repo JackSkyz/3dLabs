@@ -94,10 +94,7 @@ class rpi(object):
         try:
             while True:
                 data = self.Arduino.readline()
-                print(type(data))
-                print(str(data))
-                print('hola')
-                time.sleep(10)
+                data = str(data)
                 if len(data) != 0:
                     
                     if len(data.split('/')) == 3: # si es temperatura?
@@ -369,7 +366,8 @@ class rpi(object):
 
 if __name__ == '__main__':
     self = rpi()
-#    time.sleep(10)
+    while True:
+        time.sleep(1)
 #    self.arduinoWrite.put_nowait((n // 2, 'G28\n'))
 #    time.sleep(30)
 #    a = []
