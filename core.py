@@ -96,7 +96,7 @@ class rpi(object):
             data = self.Arduino.readline()
             data = str(data)
             if len(data) != 0:
-#                    print(data.split('/'))
+                print(data.split('/'))
                 if len(data.split('/')) == 4: # si es temperatura?
                     # tiene 2 slash que corresponde a una
                     # respuesta de temperatura
