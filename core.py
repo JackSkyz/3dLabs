@@ -94,9 +94,6 @@ class rpi(object):
         try:
             while True:
                 data = self.Arduino.readline()
-                print(data)
-                time.sleep(10)
-                print(data) * 10
                 if len(data) != 0:
                     
                     if len(data.split('/')) == 3: # si es temperatura?
@@ -149,7 +146,7 @@ class rpi(object):
                         f.write(self.aw)
                         
                 # espera a que se ha liberado el arduino
-                self.Arduino.write(string)
+                self.Arduino.write(str.encode(string))
 #                if not string[:-1] == 'M105':
 #                    self.queueCommands.append(string)
                         
