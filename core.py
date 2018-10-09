@@ -266,6 +266,7 @@ class rpi(object):
     def Priting(self, dt):
         self.distanceTotal = 0
         path = self.parameters['Imprimiendo']['archivo']
+        print('priting {}'.format(path))
         with open(path, 'r') as gcode:
             linesGCode = gcode.readlines()
             
