@@ -172,9 +172,9 @@ class rpi(object):
         elif command == 'apagar_motores':
             self.arduinoWrite.put(self.commands[command.lower()])
         elif command[:4] == 'move':
-            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand.lower()))
+            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
         elif command[:4] == 'cale':
-            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand.lower()))
+            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
         else:
             [self.arduinoWrite.put(c) for c in self.commands[command]]
         #self.commands[]
