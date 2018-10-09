@@ -219,6 +219,7 @@ class rpi(object):
             if line[0] == 'M':
                 continue
             line = line.split(' ')
+            print(line)
             f = True
             for l in line:
                 if l[0] == 'X':
