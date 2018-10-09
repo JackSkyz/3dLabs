@@ -125,7 +125,7 @@ class rpi(object):
     #                        print('Lectura del arduino: {}'.format(data))
                         a = datetime.now()
                         self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
-                        with open('./ArduinoRead.log', 'w') as f:
+                        with open('../ArduinoRead.log', 'w') as f:
                             f.write(self.s)
         except:
             raise Exception('Muerto el proceso Arduino Read: {}'.format(sys.exc_info()[0]))
@@ -142,7 +142,7 @@ class rpi(object):
 #                    print('Escritura arduino: {}'.format(string[:-1]))
                 a = datetime.now()
                 self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
-                with open('./ArduinoWrite.log', 'w') as f:
+                with open('../ArduinoWrite.log', 'w') as f:
                     f.write(self.aw)
                     
             # espera a que se ha liberado el arduino
