@@ -76,7 +76,7 @@ class rpi(object):
         self.arduinoWrite = queue.Queue()
         self.functionExec = queue.Queue()
         # retardo para establecer la conexion serial
-        time.sleep(2)
+#        time.sleep(2)
         self.busy = Event()
         self.priting = []
         
@@ -158,13 +158,11 @@ class rpi(object):
         """Request the temperature every one second"""
         try:
 #            start = time.time()
-                time.sleep(2.5)
 #                if ((time.time() - start) >= 2.5):
 #                    start = time.time()
                 if self.parameters['Imprimiendo']['archivo'] == '' or self.parameters['status'] == 'pause':
                     self.arduinoWrite.put(self.commands['Temperatura'])
 #                    print('pedi T')
-                time.sleep(0.25)
                 
                     
 #                    if self._debug:
