@@ -739,22 +739,22 @@ class MainScreen(Screen):
         self.Rpi.control_wo_print('home', self.control_button_axis.control_axis)
     def control_move_left_10(self):
         print('mover_{}\t-10'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -10)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), -10)
     def control_move_left_1(self):
         print('mover_{}\t-1'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -1)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), -1)
     def control_move_left_01(self):
         print('mover_{}\t-.1'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -.1)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), -.1)
     def control_move_right_10(self):
         print('mover_{}\t10'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 10)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), 10)
     def control_move_right_1(self):
         print('mover_{}\t1'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 1)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), 1)
     def control_move_right_01(self):
         print('mover_{}\t.1'.format(self.control_button_axis.control_axis.lower()))
-        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', .1)
+        self.Rpi.control_wo_print('mover_{}'.format(self.control_button_axis.control_axis.lower()), .1)
     def control_home_all(self):
         print('home\tall')
         self.Rpi.control_wo_print('home', 'all')
