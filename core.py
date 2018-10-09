@@ -276,7 +276,6 @@ class rpi(object):
         lineDistance, x, y, z, newX, newY, newZ = 0, 0, 0, 0, 0, 0, 0
         start = time.time()
         for i, line in enumerate(linesGCode):
-            print(line)
             line = line[:-1]
             if line[0] == ';':
                 continue
@@ -320,7 +319,7 @@ class rpi(object):
             elif self.parameters['status'] == 'stop':
                 self.parameters['Imprimiendo']['archivo'] = ''
                 break
-            
+            print(line)
             self.arduinoWrite.put(line)
             self.queueCommands.append(line)
             if (i % 5) == 0:
