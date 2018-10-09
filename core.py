@@ -264,7 +264,7 @@ class rpi(object):
         plt.close('all')
         print ('Done percent!!')
     
-    def Priting(self, dt):
+    def Priting(self):
         self.distanceTotal = 0
         path = self.parameters['Imprimiendo']['archivo']
         print('priting {}'.format(path))
