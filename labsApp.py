@@ -809,4 +809,4 @@ class MyApp(App):
         Clock.schedule_interval(self.My.check_usb, 0.5)
     
 
-MyApp().run()
+#MyApp().run()

@@ -165,7 +165,7 @@ class rpi(object):
                 if self.parameters['Imprimiendo']['archivo'] == '' or self.parameters['status'] == 'pause':
                     self.arduinoWrite.put(self.commands['Temperatura'])
                     print('pedi T')
-                time.sleep(0.1)
+                time.sleep(0.25)
                 
                     
 #                    if self._debug:
