@@ -14,7 +14,7 @@ import queue
 import time
 import json
 import numpy as np
-from coordenates import getCoordenates, saveCoordenates
+#from coordenates import getCoordenates, saveCoordenates
 from datetime import datetime
 import os
 
@@ -70,9 +70,9 @@ class rpi(object):
         
         """ Queue """
         self.queueCommands = []
-        self.arduinoRead  = Queue.Queue()
-        self.arduinoWrite = Queue.Queue()
-        self.functionExec = Queue.Queue()
+        self.arduinoRead  = queue.Queue()
+        self.arduinoWrite = queue.Queue()
+        self.functionExec = queue.Queue()
         # retardo para establecer la conexion serial
         time.sleep(1)
         self.busy = Event()
@@ -178,7 +178,7 @@ class rpi(object):
 #        try:
         while True:
             if not self.functionExec.empty():
-                function = self.functionExec.get_nowait()
+                self.functionExec.get_nowait()
 #                if self._debug:
 #                    print('Se va a ejecutar la seguiente funcion: {}'.format(function))
                 self.Priting()
