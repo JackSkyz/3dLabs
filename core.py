@@ -124,7 +124,7 @@ class rpi(object):
                     if self._debug:
     #                        print('Lectura del arduino: {}'.format(data))
                         a = datetime.now()
-                        self.s += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + data
+                        self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
                         with open('./ArduinoRead.log', 'w') as f:
                             f.write(self.s)
         except:
@@ -162,7 +162,7 @@ class rpi(object):
 #                    start = time.time()
                 if self.parameters['Imprimiendo']['archivo'] == '' or self.parameters['status'] == 'pause':
                     self.arduinoWrite.put(self.commands['Temperatura'])
-#                    print('pedi T')
+                    print('pedi T')
                 
                     
 #                    if self._debug:
@@ -187,7 +187,6 @@ class rpi(object):
         t.append(self.parameters['Temperatura']['extrusor_meta'])
         t.append(self.parameters['Temperatura']['cama'])
         t.append(self.parameters['Temperatura']['cama_meta'])
-        print(t)
         
         return t
     
