@@ -95,7 +95,6 @@ class rpi(object):
             data = self.Arduino.readline()
             data = str(data)
             if len(data) != 0:
-                print(data.split('/'))
                 if len(data.split('/')) == 3: # si es temperatura?
                     # tiene 2 slash que corresponde a una
                     # respuesta de temperatura
@@ -136,7 +135,7 @@ class rpi(object):
                 string += '\n'
 
             if self._debug:
-#                    print('Escritura arduino: {}'.format(string[:-1]))
+                print('Escritura arduino: {}'.format(string[:-1]))
                 a = datetime.now()
                 self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
                 with open('../ArduinoWrite.log', 'w') as f:
@@ -155,7 +154,7 @@ class rpi(object):
         """Request the temperature every one second"""
         if self.parameters['Imprimiendo']['archivo'] == '' or self.parameters['status'] == 'pause':
             self.arduinoWrite.put(self.commands['Temperatura'])
-            print('pedi T')
+#            print('pedi T')
         
     def get_temp(self):
         t = []
@@ -169,15 +168,15 @@ class rpi(object):
     def control_wo_print(self, command, subcommand=None, undercommand=None):
         print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
         if command == 'home':
-            self.arduinoWrite.put_nowait(self.commands[command][subcommand])
+            self.arduinoWrite.put(self.commands[command][subcommand])
         elif command == 'apagar_motores':
-            self.arduinoWrite.put_nowait(self.commands[command])
+            self.arduinoWrite.put(self.commands[command])
         elif command[:4] == 'move':
-            self.arduinoWrite.put_nowait(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands[command].format(subcommand))
         elif command[:4] == 'cale':
-            self.arduinoWrite.put_nowait(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands[command].format(subcommand))
         else:
-            [self.arduinoWrite.put_nowait(c) for c in self.commands[command]]
+            [self.arduinoWrite.put(c) for c in self.commands[command]]
         #self.commands[]
 
     def getPercent(self, linesGCode):
