@@ -820,8 +820,8 @@ class MyApp(App):
         Clock.schedule_interval(self.My.update_temperature, 0.5)
         Clock.schedule_interval(self.My.check_usb, 0.5)
         
-        Clock.schedule_interval(self.My.ArduinoRead, 1/20)
-        Clock.schedule_interval(self.My.ArduinoWrite, 1/20)
+        Clock.schedule_interval(self.My.ArduinoRead, 1/25)
+        Clock.schedule_interval(self.My.ArduinoWrite, 1/25)
         Clock.schedule_interval(self.My.requestTemperature, .25)
         
     

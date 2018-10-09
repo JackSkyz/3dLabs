@@ -167,6 +167,7 @@ class rpi(object):
         return t
     
     def control_wo_print(self, command, subcommand=None, undercommand=None):
+        print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
         if command == 'home':
             self.arduinoWrite.put_nowait(self.commands[command][subcommand])
         elif command == 'apagar_motores':
