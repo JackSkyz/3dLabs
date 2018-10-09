@@ -66,8 +66,8 @@ class rpi(object):
         self.aw = ''
         
         
-        if self._debug:
-            print('Estado del puerto: {isOpen}\nNombre del dispositivo: {name}\n'.format(isOpen=self.Arduino.isOpen(), name=self.Arduino.name))
+#        if self._debug:
+        print('Estado del puerto: {isOpen}\nNombre del dispositivo: {name}\n'.format(isOpen=self.Arduino.isOpen(), name=self.Arduino.name))
 
         
         """ Queue """
