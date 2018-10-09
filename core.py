@@ -319,13 +319,13 @@ class rpi(object):
                         break
             elif self.parameters['status'] == 'stop':
                 self.parameters['Imprimiendo']['archivo'] = ''
-                
                 break
-            self.arduinoWrite.put_nowait(line)
+            
+            self.arduinoWrite.put(line)
             self.queueCommands.append(line)
             if (i % 5) == 0:
-                self.arduinoWrite.put_nowait(self.commands['Temperatura'])
-            if len(self.queueCommands) >= 1:
+                self.arduinoWrite.put(self.commands['Temperatura'])
+            if len(self.queueCommands) >= n:
                 self.busy.wait()
             self.busy.clear()
 #            print 'busy.clear, queue command: {}'.format(len(self.queueCommands))
