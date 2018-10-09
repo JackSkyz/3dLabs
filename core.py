@@ -205,7 +205,7 @@ class rpi(object):
             self.arduinoWrite.put_nowait(self.commands[command].format(subcommand))
         else:
             [self.arduinoWrite.put_nowait(c) for c in self.commands[command]]
-        self.commands[]
+        #self.commands[]
 
     def getPercent(self, linesGCode):
         distance, x, y, z, newX, newY, newZ = 0, 0, 0, 0, 0, 0, 0
