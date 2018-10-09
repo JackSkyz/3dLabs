@@ -91,15 +91,12 @@ class rpi(object):
         
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
-        print('leyendo arduino')
-        print(self.Arduino.in_waiting)
         if self.Arduino.in_waiting > 0:
             data = self.Arduino.readline()
             data = str(data)
-            print(data)
             if len(data) != 0:
                 print(data.split('/'))
-                if len(data.split('/')) == 4: # si es temperatura?
+                if len(data.split('/')) == 3: # si es temperatura?
                     # tiene 2 slash que corresponde a una
                     # respuesta de temperatura
                     t = [None] * 4
@@ -123,7 +120,7 @@ class rpi(object):
                         self.queueCommands.pop(0)
                 
                 if self._debug:
-                    print('Lectura del arduino: {}'.format(data))
+#                    print('Lectura del arduino: {}'.format(data))
                     a = datetime.now()
                     self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
 #                    print(data)
