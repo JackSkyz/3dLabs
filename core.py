@@ -168,13 +168,13 @@ class rpi(object):
     def control_wo_print(self, command, subcommand=None, undercommand=None):
         print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
         if command == 'home':
-            self.arduinoWrite.put(self.commands[command][subcommand])
+            self.arduinoWrite.put(self.commands[command.lower()][subcommand.lower()])
         elif command == 'apagar_motores':
-            self.arduinoWrite.put(self.commands[command])
+            self.arduinoWrite.put(self.commands[command.lower()])
         elif command[:4] == 'move':
-            self.arduinoWrite.put(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand.lower()))
         elif command[:4] == 'cale':
-            self.arduinoWrite.put(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand.lower()))
         else:
             [self.arduinoWrite.put(c) for c in self.commands[command]]
         #self.commands[]
