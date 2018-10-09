@@ -1,24 +1,16 @@
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.properties import StringProperty, NumericProperty
 from kivy.clock import Clock
 from kivy.uix.screenmanager import Screen
-from kivy.uix.scrollview import ScrollView
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.button import Button
-from kivy.uix.checkbox import CheckBox
-from kivy.graphics import Rectangle, Color
-from kivy.metrics import sp
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.floatlayout import FloatLayout
-from kivy.lang.parser import global_idmap
 
 import os
 from core import rpi
 from glob import glob
 from colour import Color
 import numpy as np
+os.environ['KIVY_WINDOW'] = 'egl_rpi' 
 
 from kivy.config import Config
 Config.set('graphics', 'width', '800')
