@@ -106,7 +106,7 @@ class rpi(object):
                     t[1] = float(d[1].split('B')[0])
                     t[2] = float(d[1].split(':')[-1])
                     t[3] = float(d[2].split('@')[0])
-                    print(t)
+#                    print(t)
                     
                     self.parameters['Temperatura']['extrusor'] = t[0]
                     self.parameters['Temperatura']['extrusor_meta'] = t[1]
@@ -124,7 +124,7 @@ class rpi(object):
 #                        print('Lectura del arduino: {}'.format(data))
                     a = datetime.now()
                     self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
-                    print(data)
+#                    print(data)
                     with open('../ArduinoRead.log', 'w') as f:
                         f.write(self.s)
             
