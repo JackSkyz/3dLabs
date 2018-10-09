@@ -93,7 +93,7 @@ class rpi(object):
         
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
-        print('read arduino')
+        print('Read arduino: {}'.format(self.Arduino.in_waiting), end='\t')
         if self.Arduino.in_waiting > 0:
             data = self.Arduino.readline()
             data = str(data)
