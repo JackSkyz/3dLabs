@@ -30,6 +30,8 @@ class rpi(object):
                     'enfriar': ['M104 S0', 'M140 S0'], 
                     'calentar_cama': 'M140 S{}', 
                     'apagar_motores': 'M84', 
+                    'relative_move': 'G91',
+                    'relative_absolute': 'G90',
                     'mover_x': 'G1 X{}', 
                     'mover_y': 'G1 Y{}', 
                     'mover_z': 'G1 Z{}', 
@@ -168,15 +170,25 @@ class rpi(object):
     def control_wo_print(self, command, subcommand=None, undercommand=None):
         print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
         if command == 'home':
+            self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()][subcommand.lower()])
+            self.arduinoWrite.put('relative_absolute')
         elif command == 'apagar_motores':
+            self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()])
+            self.arduinoWrite.put('relative_absolute')
         elif command[:4] == 'move':
+            self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
+            self.arduinoWrite.put('relative_absolute')
         elif command[:4] == 'cale':
+            self.arduinoWrite.put('relative_move')
             self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
+            self.arduinoWrite.put('relative_absolute')
         else:
+            self.arduinoWrite.put('relative_move')
             [self.arduinoWrite.put(c) for c in self.commands[command]]
+            self.arduinoWrite.put('relative_absolute')
         #self.commands[]
 
     def getPercent(self, linesGCode):
