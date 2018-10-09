@@ -124,6 +124,7 @@ class rpi(object):
 #                        print('Lectura del arduino: {}'.format(data))
                     a = datetime.now()
                     self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
+                    print(data)
                     with open('../ArduinoRead.log', 'w') as f:
                         f.write(self.s)
             
