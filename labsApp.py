@@ -25,7 +25,7 @@ Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '480')
 
 
-Rpi = rpi()
+
 
 root = Builder.load_string('''
 #:import SwapTransition kivy.uix.screenmanager.SwapTransition
@@ -630,6 +630,7 @@ class MainScreen(Screen):
     
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
+        self.Rpi = rpi()
         self.paths = []
         self.to_print = ''
         red  = Color('red')
@@ -648,7 +649,7 @@ class MainScreen(Screen):
         
 
     def update_temperature(self, dt):
-        t_e_now, t_e_limit, t_c_now, t_c_limit = Rpi.get_temp()
+        t_e_now, t_e_limit, t_c_now, t_c_limit = self.Rpi.get_temp()
         #t_e_now, t_e_limit, t_c_now, t_c_limit = [37,0,200,200]
         
         self.t_e_now.text   = '[b]{t:}[/b]'.format(t=t_e_now)
@@ -711,7 +712,7 @@ class MainScreen(Screen):
             self.main_button_init.state = 'down'
             self.main_button_file.state = 'normal'
             self.screen_main.current = 'init'
-            Rpi.parameters['Imprimiendo']['archivo'] = self.to_print
+            self.Rpi.parameters['Imprimiendo']['archivo'] = self.to_print
             #Rpi.functionExec.put_nowait('imprime')
             # ahora hay que bloquear los demas parametros y modificar el label del inicio
             pass
@@ -731,31 +732,31 @@ class MainScreen(Screen):
     
     def control_press_home_axis(self):
         print('home\t{}'.format(self.control_button_axis.control_axis))
-        Rpi.control_wo_print('home', self.control_button_axis.control_axis)
+        self.Rpi.control_wo_print('home', self.control_button_axis.control_axis)
     def control_move_left_10(self):
         print('mover_{}\t-10'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -10)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -10)
     def control_move_left_1(self):
         print('mover_{}\t-1'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -1)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -1)
     def control_move_left_01(self):
         print('mover_{}\t-.1'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -.1)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', -.1)
     def control_move_right_10(self):
         print('mover_{}\t10'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 10)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 10)
     def control_move_right_1(self):
         print('mover_{}\t1'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 1)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', 1)
     def control_move_right_01(self):
         print('mover_{}\t.1'.format(self.control_button_axis.control_axis.lower()))
-        Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', .1)
+        self.Rpi.control_wo_print('mover_{}.format(self.control_button_axis.control_axis.lower())', .1)
     def control_home_all(self):
         print('home\tall')
-        Rpi.control_wo_print('home', 'all')
+        self.Rpi.control_wo_print('home', 'all')
     def control_motors_off(self):
         print('apagar_motores')
-        Rpi.control_wo_print('apagar_motores')
+        self.Rpi.control_wo_print('apagar_motores')
         
     def control_press_temp_extrusor(self):
         if not self.slider_temp.ext_or_bed:
@@ -788,12 +789,17 @@ class MainScreen(Screen):
         #extrusor
         if self.slider_temp.ext_or_bed:
             print('calentar_boq\t{}'.format(int(self.slider_temp.value + .5)))
-            Rpi.control_wo_print('calentar_boq', int(self.slider_temp.value + .5))
+            self.Rpi.control_wo_print('calentar_boq', int(self.slider_temp.value + .5))
         else:
             print('calentar_cama\t{}'.format(int(self.slider_temp.value + .5)))
-            Rpi.control_wo_print('calentar_cama', int(self.slider_temp.value + .5))
-            
-
+            self.Rpi.control_wo_print('calentar_cama', int(self.slider_temp.value + .5))
+        
+        
+    def on_stops(self):
+        
+        for thread in self.Rpi.thread:
+            thread.join()
+        del self.Rpi
     
             
 
@@ -805,12 +811,15 @@ class MyApp(App):
         return self.My
     
     def on_start(self):
+        
         Clock.schedule_interval(self.My.update_temperature, 0.5)
         Clock.schedule_interval(self.My.check_usb, 0.5)
     
     def on_stop(self):
-        for thread in Rpi.thread:
-            thread.join()
+        print('now exit')
+        self.My.on_stops()
+        
+        
     
 
 MyApp().run()

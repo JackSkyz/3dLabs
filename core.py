@@ -74,7 +74,7 @@ class rpi(object):
         self.arduinoWrite = queue.Queue()
         self.functionExec = queue.Queue()
         # retardo para establecer la conexion serial
-        time.sleep(1)
+        time.sleep(2)
         self.busy = Event()
         self.priting = []
         
@@ -106,6 +106,7 @@ class rpi(object):
                         t[1] = float(d[1].split('B')[0])
                         t[2] = float(d[1].split(':')[-1])
                         t[3] = float(d[2].split('@')[0])
+                        print(t)
                         
                         self.parameters['Temperatura']['extrusor'] = t[0]
                         self.parameters['Temperatura']['extrusor_meta'] = t[1]
@@ -165,7 +166,7 @@ class rpi(object):
 #                    start = time.time()
                 if self.parameters['Imprimiendo']['archivo'] == '' or self.parameters['status'] == 'pause':
                     self.arduinoWrite.put(self.commands['Temperatura'])
-                    print('pedi T')
+#                    print('pedi T')
                 time.sleep(0.25)
                 
                     
