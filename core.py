@@ -94,6 +94,7 @@ class rpi(object):
         try:
             while True:
                 data = self.Arduino.readline()
+                print(type(data))
                 if len(data) != 0:
                     
                     if len(data.split('/')) == 3: # si es temperatura?
