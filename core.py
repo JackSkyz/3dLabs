@@ -215,6 +215,7 @@ class rpi(object):
                 line = line[:-1]
             while line[-1] == ' ':
                 line = line[:-1]
+            line = line.replace('  ', ' ')
             # si es un comando no se suma
             if line[0] == 'M':
                 continue
@@ -284,6 +285,7 @@ class rpi(object):
                 line = line[:-1]
             if line[-1] == '\r':
                 line = line[:-1]
+            line = line.replace('  ', ' ')
             lineprocess = line.split(' ')
             f = False
             for l in lineprocess:
