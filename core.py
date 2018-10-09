@@ -132,21 +132,21 @@ class rpi(object):
             
     def _ArduinoWrite(self):
         """Write the commands to the arduino"""
-            if not self.arduinoWrite.empty():
-                string = self.arduinoWrite.get()
-                # Escribe el '/n' por si no lo tiene
-                if not string[-1] == '\n':
-                    string += '\n'
+        if not self.arduinoWrite.empty():
+            string = self.arduinoWrite.get()
+            # Escribe el '/n' por si no lo tiene
+            if not string[-1] == '\n':
+                string += '\n'
 
-                if self._debug:
+            if self._debug:
 #                    print('Escritura arduino: {}'.format(string[:-1]))
-                    a = datetime.now()
-                    self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
-                    with open('./ArduinoWrite.log', 'w') as f:
-                        f.write(self.aw)
-                        
-                # espera a que se ha liberado el arduino
-                self.Arduino.write(str.encode(string))
+                a = datetime.now()
+                self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
+                with open('./ArduinoWrite.log', 'w') as f:
+                    f.write(self.aw)
+                    
+            # espera a que se ha liberado el arduino
+            self.Arduino.write(str.encode(string))
 #                if not string[:-1] == 'M105':
 #                    self.queueCommands.append(string)
                         
