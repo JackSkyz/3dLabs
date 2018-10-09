@@ -269,7 +269,6 @@ class rpi(object):
         print('priting {}'.format(path))
         with open(path, 'r') as gcode:
             linesGCode = gcode.readlines()
-        print(linesGCode)
         self.parameters['Imprimiendo']['archivo'] = os.path.basename(self.parameters['Imprimiendo']['archivo']).split('.')[0]
 #        Thread(target=self.getPercent, args=(linesGCode)).start()
 #        self.getPercent(linesGCode)
@@ -277,6 +276,7 @@ class rpi(object):
         lineDistance, x, y, z, newX, newY, newZ = 0, 0, 0, 0, 0, 0, 0
         start = time.time()
         for i, line in enumerate(linesGCode):
+            print(line)
             line = line[:-1]
             if line[0] == ';':
                 continue
