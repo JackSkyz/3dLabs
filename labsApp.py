@@ -10,13 +10,13 @@ from core import rpi
 from glob import glob
 from colour import Color
 import numpy as np
-os.environ['KIVY_WINDOW'] = 'egl_rpi' 
+#os.environ['KIVY_WINDOW'] = 'egl_rpi' 
 
-from kivy.config import Config
+#from kivy.config import Config
 #Config.set('graphics', 'width', '800')
 #Config.set('graphics', 'height', '480')
 
-Config.getint('kivy', 'show_fps')
+#Config.getint('kivy', 'show_fps')
 
 
 
