@@ -95,6 +95,7 @@ class rpi(object):
         if self.Arduino.in_waiting > 0:
             data = self.Arduino.readline()
             data = str(data)
+            print(data)
             if len(data) != 0:
                 print(data.split('/'))
                 if len(data.split('/')) == 4: # si es temperatura?
@@ -121,7 +122,7 @@ class rpi(object):
                         self.queueCommands.pop(0)
                 
                 if self._debug:
-#                        print('Lectura del arduino: {}'.format(data))
+                    print('Lectura del arduino: {}'.format(data))
                     a = datetime.now()
                     self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
 #                    print(data)
