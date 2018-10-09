@@ -15,7 +15,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.lang.parser import global_idmap
 
 import os
-#from core import rpi
+from core import rpi
 from glob import glob
 from colour import Color
 import numpy as np
