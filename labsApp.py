@@ -717,6 +717,7 @@ class MainScreen(Screen):
             self.main_button_file.state = 'normal'
             self.screen_main.current = 'init'
             self.Rpi.parameters['Imprimiendo']['archivo'] = self.to_print
+            self.Rpi.parameters['status'] = 'priting'
 #            self.Rpi.functionExec.put_nowait('imprime')
             Clock.schedule_once(self.Rpi.Priting, .6)
             
