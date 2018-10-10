@@ -116,7 +116,7 @@ class rpi(object):
                     
                     
 #                        self.fileWrite.put_nowait(string)
-                elif data[:2] == 'ok':
+                elif data.find('ok') != -1:
                     self.busy.set()
                     if len(self.queueCommands) > 0:
                         self.queueCommands.pop(0)
