@@ -94,45 +94,47 @@ class rpi(object):
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
 #        print('Read arduino: {}'.format(self.Arduino.in_waiting), end='\t')
-        if self.Arduino.in_waiting > 0:
-            data = self.Arduino.readline()
-            data = str(data)
-            if len(data) != 0:
-                if len(data.split('/')) == 3: # si es temperatura?
-                    # tiene 2 slash que corresponde a una
-                    # respuesta de temperatura
-                    t = [None] * 4
-                    d = data.split('/')
-                    t[0] = float(d[0].split(':')[-1])
-                    t[1] = float(d[1].split('B')[0])
-                    t[2] = float(d[1].split(':')[-1])
-                    t[3] = float(d[2].split('@')[0])
-#                    print(t)
+        while True:
+            time.sleep(.001)
+            if self.Arduino.in_waiting > 0:
+                data = self.Arduino.readline()
+                data = str(data)
+                if len(data) != 0:
+                    if len(data.split('/')) == 3: # si es temperatura?
+                        # tiene 2 slash que corresponde a una
+                        # respuesta de temperatura
+                        t = [None] * 4
+                        d = data.split('/')
+                        t[0] = float(d[0].split(':')[-1])
+                        t[1] = float(d[1].split('B')[0])
+                        t[2] = float(d[1].split(':')[-1])
+                        t[3] = float(d[2].split('@')[0])
+    #                    print(t)
+                        
+                        self.parameters['Temperatura']['extrusor'] = t[0]
+                        self.parameters['Temperatura']['extrusor_meta'] = t[1]
+                        self.parameters['Temperatura']['cama'] = t[2]
+                        self.parameters['Temperatura']['cama_meta'] = t[3]
+                        
+                        
+    #                        self.fileWrite.put_nowait(string)
+                    elif data.find('ok') != -1:
+                        self.busy.set()
+                        if len(self.queueCommands) > 0:
+                            self.queueCommands.pop(0)
                     
-                    self.parameters['Temperatura']['extrusor'] = t[0]
-                    self.parameters['Temperatura']['extrusor_meta'] = t[1]
-                    self.parameters['Temperatura']['cama'] = t[2]
-                    self.parameters['Temperatura']['cama_meta'] = t[3]
-                    
-                    
-#                        self.fileWrite.put_nowait(string)
-                elif data.find('ok') != -1:
-                    self.busy.set()
-                    if len(self.queueCommands) > 0:
-                        self.queueCommands.pop(0)
-                
-                if self._debug:
-#                    print('Lectura del arduino: {}'.format(data))
-                    a = datetime.now()
-                    self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
-#                    print(data)
-                    with open('../ArduinoRead.log', 'w') as f:
-                        f.write(self.s)
+                    if self._debug:
+    #                    print('Lectura del arduino: {}'.format(data))
+                        a = datetime.now()
+                        self.s += '{:02d}-{:02d}-{:02d}-{:06d}: {}\n'.format(a.hour, a.minute, a.second, a.microsecond, data)
+    #                    print(data)
+                        with open('../ArduinoRead.log', 'w') as f:
+                            f.write(self.s)
             
     def _ArduinoWrite(self):
         """Write the commands to the arduino"""
         while True:
-            time.sleep(.005)
+            time.sleep(.001)
             if not self.arduinoWrite.empty():
                 string = self.arduinoWrite.get()
                 # Escribe el '/n' por si no lo tiene

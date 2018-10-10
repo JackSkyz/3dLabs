@@ -644,7 +644,7 @@ class MainScreen(Screen):
         
         
     
-    def ArduinoRead(self, dt):
+    def ArduinoRead(self):
         self.Rpi._ArduinoRead()
     
     def ArduinoWrite(self):
