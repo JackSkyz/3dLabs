@@ -647,7 +647,7 @@ class MainScreen(Screen):
     def ArduinoRead(self, dt):
         self.Rpi._ArduinoRead()
     
-    def ArduinoWrite(self, dt):
+    def ArduinoWrite(self):
         self.Rpi._ArduinoWrite()
         
     def requestTemperature(self, dt):
