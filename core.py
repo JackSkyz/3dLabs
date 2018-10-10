@@ -146,7 +146,7 @@ class rpi(object):
                         f.write(self.aw)
                     
             # espera a que se ha liberado el arduino
-            self.Arduino.write(b'{}'.format(string))
+            self.Arduino.write(str.encode(string))
 #                if not string[:-1] == 'M105':
 #                    self.queueCommands.append(string)
                         
