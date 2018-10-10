@@ -30,8 +30,8 @@ class rpi(object):
                     'enfriar': ['M104 S0', 'M140 S0'], 
                     'calentar_cama': 'M140 S{}', 
                     'apagar_motores': 'M84', 
-                    'relative_move': 'G90',
-                    'relative_absolute': 'G91',
+                    'relative_move': 'G91',
+                    'relative_absolute': 'G90',
                     'mover_x': 'G1 X{}', 
                     'mover_y': 'G1 Y{}', 
                     'mover_z': 'G1 Z{}', 
@@ -146,7 +146,7 @@ class rpi(object):
                         f.write(self.aw)
                     
             # espera a que se ha liberado el arduino
-            self.Arduino.write(str.encode(string))
+            self.Arduino.write(b'{}'.format(string))
 #                if not string[:-1] == 'M105':
 #                    self.queueCommands.append(string)
                         
