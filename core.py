@@ -18,7 +18,7 @@ import numpy as np
 from datetime import datetime
 import os
 
-n = 10
+n = 25
 
 class rpi(object):
     def __init__(self, debug=True):
@@ -132,7 +132,7 @@ class rpi(object):
     def _ArduinoWrite(self):
         """Write the commands to the arduino"""
         while True:
-            time.sleep(.01)
+            time.sleep(.005)
             if not self.arduinoWrite.empty():
                 string = self.arduinoWrite.get()
                 # Escribe el '/n' por si no lo tiene
