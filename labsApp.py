@@ -827,7 +827,7 @@ class MyApp(App):
         
         Clock.schedule_interval(self.My.ArduinoRead, 1/25)
 #        Clock.schedule_interval(self.My.ArduinoWrite, 1/25)
-        Thread(target=self.Rpi._ArduinoWrite).start()
+        Thread(target=self.My.ArduinoWrite).start()
         Clock.schedule_interval(self.My.requestTemperature, .25)
         
     
