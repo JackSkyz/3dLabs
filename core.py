@@ -132,6 +132,7 @@ class rpi(object):
     def _ArduinoWrite(self):
         """Write the commands to the arduino"""
         while True:
+            time.sleep(.01)
             if not self.arduinoWrite.empty():
                 string = self.arduinoWrite.get()
                 # Escribe el '/n' por si no lo tiene
