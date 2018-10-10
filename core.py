@@ -179,11 +179,11 @@ class rpi(object):
         elif command[:4] == 'move':
             self.arduinoWrite.put(self.commands['relative_move'])
             self.arduinoWrite.put(self.commands[command].format(subcommand))
-            self.arduinoWrite.put(self.commands['relative_absolute'])
+#            self.arduinoWrite.put(self.commands['relative_absolute'])
         elif command[:4] == 'cale':
             self.arduinoWrite.put(self.commands['relative_move'])
             self.arduinoWrite.put(self.commands[command].format(subcommand))
-            self.arduinoWrite.put(self.commands['relative_absolute'])
+#            self.arduinoWrite.put(self.commands['relative_absolute'])
         else:
             [self.arduinoWrite.put(c) for c in self.commands[command]]
         #self.commands[]
