@@ -93,7 +93,7 @@ class rpi(object):
         
     def _ArduinoRead(self):
         """read the incoming messages from the arduino"""
-        print('Read arduino: {}'.format(self.Arduino.in_waiting), end='\t')
+#        print('Read arduino: {}'.format(self.Arduino.in_waiting), end='\t')
         if self.Arduino.in_waiting > 0:
             data = self.Arduino.readline()
             data = str(data)
@@ -138,11 +138,12 @@ class rpi(object):
                 string += '\n'
 
             if self._debug:
-                print('Escritura arduino: {}'.format(string[:-1]))
-                a = datetime.now()
-                self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
-                with open('../ArduinoWrite.log', 'w') as f:
-                    f.write(self.aw)
+                if string.find('M105') == -1:
+                    print('Escritura arduino: {}'.format(string[:-1]))
+                    a = datetime.now()
+                    self.aw += '{:02d}-{:02d}-{:02d}-{:06d}: '.format(a.hour, a.minute, a.second, a.microsecond) + string
+                    with open('../ArduinoWrite.log', 'w') as f:
+                        f.write(self.aw)
                     
             # espera a que se ha liberado el arduino
             self.Arduino.write(str.encode(string))
@@ -169,27 +170,22 @@ class rpi(object):
         return t
     
     def control_wo_print(self, command, subcommand=None, undercommand=None):
-        print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
+#        print('command: {}\nsubcommand: {}\nundercommand: {}'.format(command,subcommand,undercommand))
+        command = command.lower()
         if command == 'home':
-            self.arduinoWrite.put('relative_move')
-            self.arduinoWrite.put(self.commands[command.lower()][subcommand.lower()])
-#            self.arduinoWrite.put('relative_absolute')
+            self.arduinoWrite.put(self.commands[command][subcommand.lower()])
         elif command == 'apagar_motores':
-            self.arduinoWrite.put('relative_move')
-            self.arduinoWrite.put(self.commands[command.lower()])
-#            self.arduinoWrite.put('relative_absolute')
+            self.arduinoWrite.put(self.commands[command])
         elif command[:4] == 'move':
-            self.arduinoWrite.put('relative_move')
-            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
-#            self.arduinoWrite.put('relative_absolute')
+            self.arduinoWrite.put(self.commands['relative_move'])
+            self.arduinoWrite.put(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands['relative_absolute'])
         elif command[:4] == 'cale':
-            self.arduinoWrite.put('relative_move')
-            self.arduinoWrite.put(self.commands[command.lower()].format(subcommand))
-#            self.arduinoWrite.put('relative_absolute')
+            self.arduinoWrite.put(self.commands['relative_move'])
+            self.arduinoWrite.put(self.commands[command].format(subcommand))
+            self.arduinoWrite.put(self.commands['relative_absolute'])
         else:
-            self.arduinoWrite.put('relative_move')
             [self.arduinoWrite.put(c) for c in self.commands[command]]
-#            self.arduinoWrite.put('relative_absolute')
         #self.commands[]
 
     def getPercent(self, linesGCode):
